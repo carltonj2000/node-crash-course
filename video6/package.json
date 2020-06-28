@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "db:start": "docker stack deploy --compose-file stack.yml db",
+    "db:end": "docker stack rm db"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "mongodb": "^3.5.9",
     "nodemon": "^2.0.4"
   }
 }

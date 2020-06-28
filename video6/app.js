@@ -13,7 +13,7 @@ app.use(express.static("public"));
 /* Mongoose test
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
-    title: "new Blog 2",
+    title: "new Blog 3",
     snippet: "about my new blog",
     body: "more about my new blog",
   });
