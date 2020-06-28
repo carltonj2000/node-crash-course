@@ -10,63 +10,15 @@ app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.static("public"));
 
-/* Mongoose test
-app.get("/add-blog", (req, res) => {
-  const blog = new Blog({
-    title: "new Blog 3",
-    snippet: "about my new blog",
-    body: "more about my new blog",
-  });
-  blog
-    .save()
-    .then((results) => {
-      res.send(results);
-    })
-    .catch((err) => console.log(err));
-});
-
-app.get("/all-blog", (req, res) => {
-  Blog.find()
-    .then((results) => {
-      res.send(results);
-    })
-    .catch((err) => console.log(err));
-});
-
-app.get("/single-blog", (req, res) => {
-  Blog.findById("5ef57898c58ecb6f56f18388")
-    .then((results) => {
-      res.send(results);
-    })
-    .catch((err) => console.log(err));
-});
-*/
-
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   return res.redirect("/blogs");
-  // old test data below
-  const blogs = [
-    {
-      title: "Yoshi finds eggs",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "Mario finds stars",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "How to defeat bowser",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-  ];
-  res.render("index", { title: "Blog CJ", blogs });
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", (_, res) => {
   res.render("about", { title: "About" });
 });
 
-app.get("/blogs", (req, res) => {
+app.get("/blogs", (_, res) => {
   Blog.find()
     .sort({ createdAt: -1 })
     .then((blogs) => {
@@ -74,12 +26,12 @@ app.get("/blogs", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-app.get("/blogs/create", (req, res) => {
+app.get("/blogs/create", (_, res) => {
   res.render("create", { title: "Create" });
 });
 
 app.use((req, res) => {
-  res.status(404).render("404", { title: "404" });
+  res.status(404).render("404", { title: "404", path: req.path });
 });
 
 const PORT = process.env.PORT || 3000;
