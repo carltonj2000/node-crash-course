@@ -3,11 +3,13 @@
   <%- include("./partials/head") %>
   <body>
     <%- include("./partials/nav") %>
-    <div class="blog content">
+    <div class="blogs content">
       <h2>All Blogs</h2>
       <% if (blogs.length > 0) { blogs.map(blog => { %>
-      <h3><%= blog.title %></h3>
-      <p><%= blog.snippet %></p>
+      <a class="single" href="/blogs/<%= blog._id %>">
+        <h3><%= blog.title %></h3>
+        <p><%= blog.snippet %></p>
+      </a>
       <% }); } else { %>
       <p>There are no blogs to display</p>
       <% } %>
